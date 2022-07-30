@@ -1,5 +1,9 @@
-number=int(input('Enter a num: '))
-if number>5:
-    print('This number is a greater then five.')
-
-
+number = float(input('Enter a num: '))
+if 0 < number <= 7:
+    print('Value is in range')
+elif number < 0:
+    print('value is negativ')
+elif number > 7:
+    print('Value greater 7')
+else:
+    print('value = 0')
