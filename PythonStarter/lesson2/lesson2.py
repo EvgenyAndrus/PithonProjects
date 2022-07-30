@@ -98,6 +98,44 @@ print('корень 16', sqrt(16))
 print('округление', round(x / y, 3))
 print('---------------------------------')
 print('число Пи', pi)
-print(sin(pi/4))
+print(sin(pi / 4))
 print('гипотенуза по 2м катетам с размерами 3 и 4 =', hypot(3, 4))
+print('------------------------------------------------------------------')
+# логические операции
+print(True and True)
+print(True or False)
+print(True and False)
+print(not True, "\n")
+print(2 < 3)
+print(2 == 3)
+print(2 != 3)
+print(2 > 3, '\n')
+# строки
+string1 = 'string'
+string2 = "string"
+print(string1, string2)
+string = 'first line ' \
+         'second line ' \
+         "third line"
+print(string)
+string = 'first line\n' \
+         'second line\n' \
+         "third line"
+print(string)
+print('------------------------------------------------------------------')
+# вывод на экран
+print(2, 3, 5)
+print(2, 3, 5, sep=',')
+print('he', 'llo', sep='')
+print(1, end='\n\n')
+print(2)
+# ввод
+print('------------------------------------------------------------------')
+string = input('enter a string: ')
+print('you have entered "{}"'.format(string))
+print('Press Enter to continue...')
+input()
 
+n = int(input('first num: '))
+m = int(input('second num: '))
+print('{} + {} = {}'.format(n, m, n + m))
