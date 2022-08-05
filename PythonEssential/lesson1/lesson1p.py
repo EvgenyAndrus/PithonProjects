@@ -22,6 +22,6 @@ class Person:
 john = Person('John', 22)
 luci = Person('Luci', 21)
 
-
+ 
 john.print_info()
 luci.print_info()
