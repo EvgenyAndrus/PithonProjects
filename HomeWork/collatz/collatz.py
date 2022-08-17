@@ -36,5 +36,3 @@ try:
     collatz(num)
 except ValueError:
     print('введи целое число')
-
-

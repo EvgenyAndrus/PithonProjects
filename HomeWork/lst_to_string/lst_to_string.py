@@ -5,9 +5,8 @@ spam2 = ['Лайм', 'Лангсат', 'Лардизабала', 'Лимон', '
 
 def lst_to_str(lst):
     string = ''
-    global quantity
+
     quantity = len(lst) - 1
-    global counter
     counter = 0
     for i in lst:
         if counter < quantity:
