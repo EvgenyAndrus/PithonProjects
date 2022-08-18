@@ -22,7 +22,7 @@ def division(f_number, s_number):
 
 
 def exponentiation(f_number, s_number):
-    return pow(f_number, s_number)
+    return float(pow(f_number, s_number))
 
 
 def operations(f_number, s_number, operation):
@@ -44,15 +44,20 @@ def operations(f_number, s_number, operation):
             try:
                 print('first number * Second number =', division(f_number, s_number))
             except ZeroDivisionError:
+                print('----------------------------------------')
                 print('error Zero Division')
+                print('----------------------------------------')
                 raise
-
         case 5:
             try:
                 print('exponentiation')
                 print('first number ^ Second number =', exponentiation(f_number, s_number))
             except ZeroDivisionError:
+                print('----------------------------------------')
                 print('0 cannot be raised to a negative power')
+                print('----------------------------------------')
+                raise
+            except OverflowError:
                 raise
         case _:
             raise ValueError
@@ -74,7 +79,13 @@ def main():
             operations(first_number, second_number, int(input('choose operation: ')))
             break
         except (ValueError, ZeroDivisionError):
+            print('----------------------------------------')
             print('incorrect value')
+            print('----------------------------------------')
+        except OverflowError:
+            print('----------------------------------------')
+            print('Result too large')
+            print('----------------------------------------')
 
 
 if __name__ == '__main__':
