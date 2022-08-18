@@ -2,6 +2,7 @@
 сложение, вычитание, умножение, деление и возведение в степень.
 Программа должна выдавать сообщения об ошибке и продолжать работу при вводе некорректных данных,
 делении на ноль и возведении нуля в отрицательную степень.  """
+from decimal import Decimal
 import sys
 
 
@@ -22,7 +23,11 @@ def division(f_number, s_number):
 
 
 def exponentiation(f_number, s_number):
-    return float(pow(f_number, s_number))
+    result = Decimal(0)
+    result = pow(Decimal(f_number), Decimal(s_number))
+    if result == Decimal('Infinity'):
+        raise ZeroDivisionError
+    return result
 
 
 def operations(f_number, s_number, operation):
@@ -57,7 +62,7 @@ def operations(f_number, s_number, operation):
                 print('0 cannot be raised to a negative power')
                 print('----------------------------------------')
                 raise
-            except OverflowError:
+            except Decimal.Overflow:
                 raise
         case _:
             raise ValueError
@@ -70,11 +75,11 @@ def main():
             first_number = float(input('First number: '))
             second_number = float(input('Second number: '))
             print('menu')
-            print('1: addition\n'
-                  '2: subtraction\n'
-                  '3: multiplication\n'
-                  '4: division\n'
-                  '5: exponentiation\n'
+            print('1: (+) addition\n'
+                  '2: (-) subtraction\n'
+                  '3: (*) multiplication\n'
+                  '4: (/) division\n'
+                  '5: (^) exponentiation\n'
                   '0: quit\n')
             operations(first_number, second_number, int(input('choose operation: ')))
             break
@@ -86,7 +91,10 @@ def main():
             print('----------------------------------------')
             print('Result too large')
             print('----------------------------------------')
-
+        except Decimal.Overflow:
+            print('----------------------------------------')
+            print('Result too large')
+            print('----------------------------------------')
 
 if __name__ == '__main__':
     main()
