@@ -2,7 +2,7 @@
 сложение, вычитание, умножение, деление и возведение в степень.
 Программа должна выдавать сообщения об ошибке и продолжать работу при вводе некорректных данных,
 делении на ноль и возведении нуля в отрицательную степень.  """
-from decimal import Decimal
+import decimal
 import sys
 
 
@@ -23,9 +23,9 @@ def division(f_number, s_number):
 
 
 def exponentiation(f_number, s_number):
-    result = Decimal(0)
-    result = pow(Decimal(f_number), Decimal(s_number))
-    if result == Decimal('Infinity'):
+    result = decimal.Decimal(0)
+    result = pow(decimal.Decimal(f_number), decimal.Decimal(s_number))
+    if result == decimal.Decimal('Infinity'):
         raise ZeroDivisionError
     return result
 
@@ -37,17 +37,17 @@ def operations(f_number, s_number, operation):
             sys.exit()
         case 1:
             print('addition')
-            print('first number + Second number =', addition(f_number, s_number))
+            print('{} + {} = {}'.format(f_number, s_number, addition(f_number, s_number)))
         case 2:
             print('subtraction')
-            print('first number - Second number =', subtraction(f_number, s_number))
+            print('{} - {} = {}'.format(f_number, s_number, subtraction(f_number, s_number)))
         case 3:
             print('multiplication')
-            print('first number * Second number =', multiplication(f_number, s_number))
+            print('{} * {} = {}'.format(f_number, s_number, multiplication(f_number, s_number)))
         case 4:
             print('division')
             try:
-                print('first number * Second number =', division(f_number, s_number))
+                print('{} * {} = {}'.format(f_number, s_number, division(f_number, s_number)))
             except ZeroDivisionError:
                 print('----------------------------------------')
                 print('error Zero Division')
@@ -56,13 +56,13 @@ def operations(f_number, s_number, operation):
         case 5:
             try:
                 print('exponentiation')
-                print('first number ^ Second number =', exponentiation(f_number, s_number))
+                print('{} ^ {} = {}'.format(f_number, s_number, exponentiation(f_number, s_number)))
             except ZeroDivisionError:
                 print('----------------------------------------')
                 print('0 cannot be raised to a negative power')
                 print('----------------------------------------')
                 raise
-            except Decimal.Overflow:
+            except decimal.Overflow:
                 raise
         case _:
             raise ValueError
@@ -91,12 +91,11 @@ def main():
             print('----------------------------------------')
             print('Result too large')
             print('----------------------------------------')
-        except Decimal.Overflow:
+        except decimal.Overflow:
             print('----------------------------------------')
             print('Result too large')
             print('----------------------------------------')
 
-            
-            
-    if __name__ == '__main__':
+
+if __name__ == '__main__':
     main()
