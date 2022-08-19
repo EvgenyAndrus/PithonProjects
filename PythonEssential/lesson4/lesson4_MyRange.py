@@ -21,7 +21,7 @@ class MyRange:
         return self.length
 
     def __getitem__(self, index):
-        if 0 <= index <= len(self):
+        if 0 <= index < len(self):
             return self.start + index * self.step
         else:
             raise IndexError('MyRange index out of range')
