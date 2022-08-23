@@ -1,31 +1,21 @@
-"""
-реализовывалось до версии 3.4
-кооперативная многозадачность
-реализация сопрограмм при помощи конструкции yield from"""
+'''декоратор @asyncio.coroutine устарел, начиная с Python 3.8  '''
 import random
-import time
+import asyncio
 
 
-def sleep(seconds):
-    start = time.time()
-    while time.time() - start < seconds:
-        yield
-
+@asyncio.coroutine
 def produce():
-#def produce(consumer):
-#    while True:
-    yield from sleep(0.5)
+    yield from asyncio.sleep(0.5)
     data = random.randint(1, 100)
-#   consumer.send(data)
     return data
 
 
+@asyncio.coroutine
 def consume():
     sum_ = 0
     count = 0
 
     while True:
-#        data = yield
         data = yield from produce()
         print('got data: ', data)
 
@@ -37,19 +27,16 @@ def consume():
         print('-----------------')
 
 
+@asyncio.coroutine
 def another_task():
     while True:
         print('-----------------')
         print('Hello in other task!')
         print('-----------------')
-        yield from sleep(1)
+        yield from asyncio.sleep(1)
 
 
 if __name__ == '__main__':
-    consumer = consume()
-    task = another_task()
-
-    while True:
-        next(consumer)
-        next(task)
-
+    loop = asyncio.get_event_loop()
+    tasks = [consume(), another_task()]
+    loop.run_until_complete(asyncio.wait(tasks))
