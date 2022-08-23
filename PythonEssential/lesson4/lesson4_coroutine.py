@@ -1,22 +1,20 @@
-'''декоратор @asyncio.coroutine устарел, начиная с Python 3.8  '''
+'''async/await'''
 import random
 import asyncio
 
 
-@asyncio.coroutine
-def produce():
-    yield from asyncio.sleep(0.5)
+async def produce():
+    await asyncio.sleep(0.5)
     data = random.randint(1, 100)
     return data
 
 
-@asyncio.coroutine
-def consume():
+async def consume():
     sum_ = 0
     count = 0
 
     while True:
-        data = yield from produce()
+        data = await produce()
         print('got data: ', data)
 
         sum_ += data
@@ -27,16 +25,14 @@ def consume():
         print('-----------------')
 
 
-@asyncio.coroutine
-def another_task():
+async def another_task():
     while True:
         print('-----------------')
         print('Hello in other task!')
         print('-----------------')
-        yield from asyncio.sleep(1)
+        await asyncio.sleep(1)
 
 
 if __name__ == '__main__':
-    loop = asyncio.get_event_loop()
     tasks = [consume(), another_task()]
-    loop.run_until_complete(asyncio.wait(tasks))
+    asyncio.run(asyncio.wait(tasks))
