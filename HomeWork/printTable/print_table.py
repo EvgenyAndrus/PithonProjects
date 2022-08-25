@@ -1,6 +1,12 @@
-"""Напишите функцию printTable (), которая принимает список списков строк
+"""Напишите функцию printTable(), которая принимает список списков строк
 и отображает его в виде аккуратной таблицы с выравниванием текста по правому краю
-в каждом столбце."""
+в каждом столбце.
+Вывод функции printTable() будет примерно таким
+  apples Alice  dogs
+ oranges   Bob  cats
+cherries Carol moose
+  banana David goose
+"""
 
 table_data = [['apples', 'oranges', 'cherries', 'banana'],
               ['Alice', 'Bob', 'Carol', 'David'],
